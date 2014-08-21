@@ -1,0 +1,13 @@
+{
+    "name": "nodeificator",
+    "version": "0.0.0",
+    "dependencies": {
+        "socket.io": ">=1.0.0",
+        "redis": ">=0.10.3",
+        "express": ">=4.6.1"
+    },
+    "devDependencies": {},
+    "engines": {
+        "node": ">=0.8.0"
+    }
+}

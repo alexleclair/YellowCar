@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NodeIficator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Yellow!Car</h1>
+  <p>
+    Open up your console and write the following:
+  </p>
+  <pre>
+    socket.emit('vote', 'alex');
+    socket.emit('vote', 'benoit');
+    socket.emit('vote', 'alex');
+    socket.emit('newgame');
+
+  </pre>
+  <h2>Scores</h2>
+  <pre id="score">
+
+  </pre>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    window.socket = io()
+    window.socket.on('problem', function(data) {
+        console.log('Error!', data);
+    });
+
+    window.socket.on('stats', function(data) {
+      var $score = $('#score');
+      var html = []
+      var nameLength = 50;
+      for(var i=0; i<data.length; ++i){
+        var name = data[i].name+'';
+        for(var len=name.length; len<nameLength; ++len){
+          name += ' ';
+        }
+        html.push($('<div />').text(name).html() + ' ' + data[i].score+"\r\n");
+      }
+      $score.html(html.join(''));
+    });
+  </script>
+
+</body>
+</html>
